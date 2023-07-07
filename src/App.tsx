@@ -1,13 +1,37 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import LoginButton from './LoginButton'
+import { useAuth0 } from '@auth0/auth0-react'
+import LogoutButton from './LogoutButton '
 
 function App() {
   const [count, setCount] = useState(0)
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+    useEffect(() => {
+        const getToken = async () => { 
+            const accessToken = await getAccessTokenSilently();
+            localStorage.setItem('token', accessToken );
+            localStorage.setItem('token-init-date', new Date().getTime().toString() );
+        }
+
+        if(isAuthenticated) {
+            getToken();
+        }
+    }, [getAccessTokenSilently, isAuthenticated])
 
   return (
     <>
+      {
+            isAuthenticated ? (
+                <>
+                <LogoutButton />
+                </>
+            )
+            : <LoginButton />
+            }
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -21,7 +45,9 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        
         <p>
+          
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
