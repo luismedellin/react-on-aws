@@ -15,6 +15,21 @@ export const Auth0ProviderWithNavigate = ({ children }: Props) => {
   //   navigate(appState?.returnTo || window.location.pathname);
   // };
 
+  console.log(import.meta);
+  console.log(import.meta.env);
+  console.log(import.meta.env.VITE_APP_AUTH0_CLIENT_ID);
+  console.log(import.meta.env.VITE_APP_AUTH0_CLIENT_ID);
+  console.log(import.meta.env.VITE_APP_AUTH0_CLIENT_ID);
+
+  
+  if(process){
+    console.log(process);
+    if(process.env)
+      console.log(process.env);
+      if (process.env.REACT_APP_BUILD_ENV)
+        console.log(process.env.REACT_APP_BUILD_ENV);
+  }
+
   if (!(domain && clientId && redirectUri && audience)) {
     console.log(import.meta);
     console.log(import.meta.env);
