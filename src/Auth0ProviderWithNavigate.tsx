@@ -16,8 +16,6 @@ export const Auth0ProviderWithNavigate = ({ children }: Props) => {
   // };
 
   if (!(domain && clientId && redirectUri && audience)) {
-    console.log(process);
-    console.log(process.env);
     console.log(import.meta);
     console.log(import.meta.env);
 
