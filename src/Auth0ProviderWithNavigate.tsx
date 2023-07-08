@@ -6,16 +6,21 @@ interface Props {
 }
 export const Auth0ProviderWithNavigate = ({ children }: Props) => {
 
-  const domain = process.env.VITE_APP_AUTH0_DOMAIN!;
-  const clientId = process.env.VITE_APP_AUTH0_CLIENT_ID!;
-  const redirectUri = process.env.VITE_APP_AUTH0_CALLBACK_URL;
-  const audience = process.env.VITE_APP_AUTH0_AUDIENCE;
+  const domain = import.meta.env.VITE_APP_AUTH0_DOMAIN!;
+  const clientId = import.meta.env.VITE_APP_AUTH0_CLIENT_ID!;
+  const redirectUri = import.meta.env.VITE_APP_AUTH0_CALLBACK_URL;
+  const audience = import.meta.env.VITE_APP_AUTH0_AUDIENCE;
 
   // const onRedirectCallback = (appState?: AppState, user?: User) => {
   //   navigate(appState?.returnTo || window.location.pathname);
   // };
 
   if (!(domain && clientId && redirectUri && audience)) {
+    console.log(process);
+    console.log(process.env);
+    console.log(import.meta);
+    console.log(import.meta.env);
+
     const text = `domain: ${domain}, clientId: ${clientId}, audience: ${audience}`;
     return <h1>Invalid auth0 {text}</h1>;
   }
