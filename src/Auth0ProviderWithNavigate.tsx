@@ -18,6 +18,7 @@ export const Auth0ProviderWithNavigate = ({ children }: Props) => {
   if (!(domain && clientId && redirectUri && audience)) {
     console.log(import.meta);
     console.log(import.meta.env);
+    console.log(import.meta.env.VITE_APP_AUTH0_CLIENT_ID);
 
     const text = `domain: ${domain}, clientId: ${clientId}, audience: ${audience}`;
     return <h1>Invalid auth0 {text}</h1>;
