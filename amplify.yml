@@ -3,10 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - yarn install
+        - npm ci
     build:
       commands:
-        - yarn run build
+        - echo -e "VITE_APP_AUTH0_DOMAIN=${REACT_APP_AUTH0_DOMAIN}\nVITE_APP_AUTH0_CLIENT_ID=${REACT_APP_AUTH0_CLIENT_ID}\nVITE_APP_AUTH0_CALLBACK_URL=https://www.tiny-pocker.fun/callback\nVITE_APP_AUTH0_AUDIENCE=${REACT_APP_AUTH0_AUDIENCE}" >> .env
+        - npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: dist/
